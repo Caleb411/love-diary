@@ -1,0 +1,10 @@
+{
+  "name": "love-diary",
+  "version": "1.0.0",
+  "private": true,
+  "description": "恋爱日记 · 陈霖 & 文文 静态纪念小站",
+  "scripts": {
+    "start": "npx --yes serve . -p 3000",
+    "preview": "npx --yes serve . -p 3000"
+  }
+}

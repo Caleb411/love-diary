@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>恋爱日记 · 陈霖 & 文文</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --rose: #c45b6a;
+      --rose-deep: #9e3d4d;
+      --blush: #f6d5d8;
+      --petal: #fce8ea;
+      --ink: #3a2a2c;
+      --ink-soft: #6b5558;
+      --cream: #fff7f5;
+      --mist: #f3e6e4;
+      --gold: #c9a06a;
+      --line: rgba(156, 74, 88, 0.18);
+      --shadow-soft: 0 18px 40px rgba(158, 61, 77, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Noto Serif SC", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse 80% 50% at 10% 0%, rgba(252, 210, 216, 0.55), transparent 55%),
+        radial-gradient(ellipse 70% 45% at 90% 10%, rgba(255, 228, 210, 0.45), transparent 50%),
+        linear-gradient(180deg, #fff5f3 0%, #f8e9e8 35%, #fff8f6 70%, #f6e4e2 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.35;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.5) 0 1px, transparent 2px),
+        radial-gradient(circle at 80% 60%, rgba(196, 91, 106, 0.15) 0 1px, transparent 2px);
+      background-size: 48px 48px, 64px 64px;
+      z-index: 0;
+    }
+
+    .petals {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .petal {
+      position: absolute;
+      width: 12px;
+      height: 10px;
+      background: radial-gradient(ellipse at 30% 30%, #ffd6dc, #e88a96);
+      border-radius: 70% 10% 70% 10%;
+      opacity: 0.55;
+      animation: fall linear infinite;
+      filter: blur(0.2px);
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg) translateX(0);
+        opacity: 0;
+      }
+      10% { opacity: 0.55; }
+      100% {
+        transform: translateY(110vh) rotate(360deg) translateX(40px);
+        opacity: 0;
+      }
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* —— Hero —— */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: clamp(2rem, 6vw, 4rem);
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(180deg, rgba(255, 247, 245, 0.15) 0%, rgba(255, 247, 245, 0.72) 72%, rgba(255, 247, 245, 0.95) 100%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23f8c9cf'/%3E%3Cstop offset='1' stop-color='%23f0d4c4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23g)' width='1200' height='800'/%3E%3Ccircle cx='180' cy='160' r='120' fill='%23ffffff' opacity='.25'/%3E%3Ccircle cx='980' cy='220' r='180' fill='%23e8a0a8' opacity='.2'/%3E%3Ccircle cx='640' cy='520' r='260' fill='%23ffffff' opacity='.18'/%3E%3Cpath d='M0 620 Q300 520 600 640 T1200 580 V800 H0Z' fill='%23ffffff' opacity='.35'/%3E%3C/svg%3E")
+        center / cover no-repeat;
+    }
+
+    .hero-inner {
+      text-align: center;
+      max-width: 42rem;
+      animation: rise 1.1s ease both;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .brand {
+      font-family: "Ma Shan Zheng", cursive;
+      font-size: clamp(3.4rem, 12vw, 6.5rem);
+      line-height: 1.05;
+      color: var(--rose-deep);
+      letter-spacing: 0.08em;
+      text-shadow: 0 2px 0 rgba(255, 255, 255, 0.45);
+    }
+
+    .hero-title {
+      margin-top: 1.1rem;
+      font-family: "ZCOOL XiaoWei", serif;
+      font-size: clamp(1.35rem, 3.5vw, 2rem);
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: 0.12em;
+    }
+
+    .hero-sub {
+      margin: 1rem auto 0;
+      max-width: 28rem;
+      color: var(--ink-soft);
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+
+    .hero-cta {
+      margin-top: 2.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      justify-content: center;
+    }
+
+    .btn {
+      appearance: none;
+      border: 1.5px solid var(--rose);
+      background: var(--rose);
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      padding: 0.85rem 1.6rem;
+      border-radius: 2px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: var(--rose-deep);
+      border-color: var(--rose-deep);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--rose-deep);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(196, 91, 106, 0.08);
+      color: var(--rose-deep);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 1.6rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--ink-soft);
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      animation: bob 2.2s ease-in-out infinite;
+    }
+
+    @keyframes bob {
+      0%, 100% { transform: translate(-50%, 0); opacity: 0.55; }
+      50% { transform: translate(-50%, 8px); opacity: 1; }
+    }
+
+    /* —— Sections —— */
+    section {
+      padding: clamp(3.5rem, 8vw, 6rem) clamp(1.25rem, 5vw, 3rem);
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      animation: rise 0.9s ease both;
+    }
+
+    .section-head h2 {
+      font-family: "Ma Shan Zheng", cursive;
+      font-size: clamp(2.2rem, 6vw, 3.2rem);
+      color: var(--rose-deep);
+      letter-spacing: 0.06em;
+    }
+
+    .section-head p {
+      margin-top: 0.6rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+    }
+
+    /* —— Moments —— */
+    .moments {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      counter-reset: none;
+    }
+
+    @media (max-width: 720px) {
+      .moments {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .moment {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .moment.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    .moment .num {
+      font-family: "ZCOOL XiaoWei", serif;
+      font-size: 2.2rem;
+      color: var(--rose);
+      line-height: 1;
+    }
+
+    .moment .label {
+      margin-top: 0.55rem;
+      font-size: 0.92rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.08em;
+    }
+
+    /* —— Filters —— */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.45);
+      color: var(--ink-soft);
+      font-family: inherit;
+      font-size: 0.85rem;
+      padding: 0.45rem 0.95rem;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .chip:hover,
+    .chip.active {
+      background: var(--rose);
+      border-color: var(--rose);
+      color: #fff;
+    }
+
+    /* —— Timeline —— */
+    .timeline {
+      position: relative;
+      padding-left: 1.4rem;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 0.35rem;
+      top: 0.4rem;
+      bottom: 0.4rem;
+      width: 1px;
+      background: linear-gradient(180deg, var(--blush), var(--rose), var(--blush));
+      opacity: 0.7;
+    }
+
+    .entry {
+      position: relative;
+      padding: 0 0 1.75rem 1.35rem;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .entry.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    .entry::before {
+      content: "";
+      position: absolute;
+      left: -1.22rem;
+      top: 0.55rem;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--cream);
+      border: 2px solid var(--rose);
+      box-shadow: 0 0 0 3px rgba(196, 91, 106, 0.12);
+    }
+
+    .entry.special::before {
+      background: var(--rose);
+      border-color: var(--rose-deep);
+      width: 11px;
+      height: 11px;
+      left: -1.28rem;
+      top: 0.48rem;
+    }
+
+    .entry-day {
+      font-family: "ZCOOL XiaoWei", serif;
+      font-size: 0.95rem;
+      color: var(--rose);
+      letter-spacing: 0.12em;
+    }
+
+    .entry.special .entry-day {
+      color: var(--rose-deep);
+    }
+
+    .entry-tag {
+      display: inline-block;
+      margin-left: 0.55rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      border-bottom: 1px solid rgba(201, 160, 106, 0.45);
+      padding-bottom: 1px;
+      vertical-align: middle;
+    }
+
+    .entry-text {
+      margin-top: 0.35rem;
+      font-size: 1.02rem;
+      line-height: 1.85;
+      color: var(--ink);
+    }
+
+    .entry.hidden {
+      display: none;
+    }
+
+    /* —— Letter —— */
+    .letter {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: clamp(2rem, 5vw, 3rem);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(252, 232, 234, 0.55));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+    }
+
+    .letter h2 {
+      font-family: "Ma Shan Zheng", cursive;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      color: var(--rose-deep);
+    }
+
+    .letter p {
+      margin-top: 1.1rem;
+      line-height: 2;
+      color: var(--ink-soft);
+      font-size: 1.02rem;
+    }
+
+    .letter .sign {
+      margin-top: 1.6rem;
+      font-family: "Ma Shan Zheng", cursive;
+      font-size: 1.6rem;
+      color: var(--rose);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem 3rem;
+      color: var(--ink-soft);
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+    }
+
+    .search-wrap {
+      max-width: 420px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .search {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.55);
+      padding: 0.75rem 1rem;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--ink);
+      border-radius: 2px;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .search:focus {
+      border-color: var(--rose);
+      box-shadow: 0 0 0 3px rgba(196, 91, 106, 0.12);
+    }
+
+    .empty {
+      text-align: center;
+      color: var(--ink-soft);
+      padding: 2rem 0;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="petals" id="petals" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <header class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <p class="brand">恋爱日记</p>
+        <h1 class="hero-title">陈霖 &amp; 文文</h1>
+        <p class="hero-sub">从 9.13 的那束花开始，把每一次散步、火锅与晚霞，都轻轻写进我们的故事里。</p>
+        <div class="hero-cta">
+          <a class="btn" href="#timeline">翻开日记</a>
+          <a class="btn btn-ghost" href="#letter">写给彼此</a>
+        </div>
+      </div>
+      <div class="scroll-hint">下滑 · 继续</div>
+    </header>
+
+    <section id="moments" aria-label="恋爱瞬间">
+      <div class="section-head">
+        <h2>我们的瞬间</h2>
+        <p>数字会变，心意不变</p>
+      </div>
+      <div class="moments">
+        <div class="moment" data-reveal>
+          <div class="num" id="daysTogether">—</div>
+          <div class="label">相爱的日子</div>
+        </div>
+        <div class="moment" data-reveal>
+          <div class="num" id="dateCount">—</div>
+          <div class="label">约会记录</div>
+        </div>
+        <div class="moment" data-reveal>
+          <div class="num" id="milestoneCount">—</div>
+          <div class="label">特别纪念日</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="timeline" aria-label="恋爱时间线">
+      <div class="section-head">
+        <h2>点滴时光</h2>
+        <p>一页一页，都是喜欢</p>
+      </div>
+
+      <div class="search-wrap">
+        <input class="search" id="search" type="search" placeholder="搜地点、美食或关键词…" aria-label="搜索日记" />
+      </div>
+
+      <div class="filters" id="filters" role="tablist" aria-label="筛选">
+        <button class="chip active" data-filter="all" type="button">全部</button>
+        <button class="chip" data-filter="special" type="button">纪念日</button>
+        <button class="chip" data-filter="walk" type="button">散步</button>
+        <button class="chip" data-filter="food" type="button">美食</button>
+        <button class="chip" data-filter="trip" type="button">出游</button>
+      </div>
+
+      <div class="timeline" id="diary"></div>
+      <p class="empty" id="empty">没有找到匹配的记录～</p>
+    </section>
+
+    <section id="letter" aria-label="情书">
+      <article class="letter">
+        <h2>致我们</h2>
+        <p>
+          从苏宁广场的第一次约会，到 9.13 表白送花正式在一起；
+          从恋爱 99 天、520 的彩虹花束，到一周年的泳池与阳光——
+          火锅、散步、爬山、看电影，平凡的日子被喜欢填满。
+          愿往后每一个日子，都有彼此可依。
+        </p>
+        <p class="sign">陈霖 · 文文</p>
+      </article>
+    </section>
+
+    <footer>恋爱日记 · 用心收藏每一次相遇</footer>
+  </div>
+
+  <script>
+    const START_DATE = new Date(2025, 8, 13); // 2025-09-13 表白在一起
+
+    const diaries = [
+      { n: 1, text: "苏宁广场 roiin 坏蛋联盟2", tags: ["food", "trip"] },
+      { n: 2, text: "焰请烤肉铺子 ktv", tags: ["food"] },
+      { n: 3, text: "万象城山川小町烧肉 大东方百货香水 奇遇 啫苑 9.13表白送花在一起", tags: ["special", "food"], tag: "表白 · 在一起" },
+      { n: 4, text: "南下塘南长街散步", tags: ["walk"] },
+      { n: 5, text: "海岸城海鲜豆捞 宜家荟聚", tags: ["food"] },
+      { n: 6, text: "渤公岛散步", tags: ["walk"] },
+      { n: 7, text: "万象城淮舍 志愿军浴血和平", tags: ["food", "trip"] },
+      { n: 8, text: "山姆超市 南长街赵美丽火锅", tags: ["food"] },
+      { n: 9, text: "万象城牛排家 尚贤河湿地公园 运河汇叁食烧鸟 太湖广场散步", tags: ["food", "walk"] },
+      { n: 10, text: "苏州中心广场三出山火锅 evoojoo面包店 金鸡湖李公堤栈道", tags: ["food", "walk"] },
+      { n: 11, text: "海岸城粤仔湾", tags: ["food"] },
+      { n: 12, text: "万象汇很久以前羊肉串 滨寿司 蠡湖之光摩天轮 蠡湖大桥公园散步", tags: ["food", "walk", "trip"] },
+      { n: 13, text: "下班后新吴万达大渝火锅", tags: ["food"] },
+      { n: 14, text: "上海chiikawa旗舰店 蟹黄面 共青森林公园 荀福食堂汤咖喱", tags: ["trip", "food", "walk"] },
+      { n: 15, text: "南长街散步 无邪冰激凌 大鱿鱼", tags: ["walk", "food"] },
+      { n: 16, text: "爬惠山 惠山古镇 云蝠拾厝 TAIWAN臺灣風味料理", tags: ["trip", "food"] },
+      { n: 17, text: "肯德基早餐 陈记潮汕食铺 恒隆黄油与面包 鹅鼻嘴公园 江阴南门八佰伴泰果", tags: ["food", "trip"] },
+      { n: 18, text: "苏州平江路 大闸蟹 金鸡湖艺术中心 全家便利店", tags: ["trip", "food"] },
+      { n: 19, text: "小菜园吃晚饭后回去上班", tags: ["food"] },
+      { n: 20, text: "运河艺术公园散步", tags: ["walk"] },
+      { n: 21, text: "万象汇牛new寿喜烧 冠嶂古道 江南里", tags: ["food", "trip"] },
+      { n: 22, text: "喜鼎海胆水饺 苏州西山岛 隆兴记面馆", tags: ["food", "trip"] },
+      { n: 23, text: "福顺斋牛羊肉烧麦 锡东八佰伴 T12取眼镜 苏宁梅果云贵川 尚贤湖湿地公园", tags: ["food", "walk"] },
+      { n: 24, text: "悦尚奥莱惊天魔盗团3 谢式海鲜大排档帝王蟹花甲", tags: ["trip", "food"] },
+      { n: 25, text: "木渎影视城 天平山赏枫爬山 寿桃湖 路边烤玉米 烤肉卷饼", tags: ["trip", "food"] },
+      { n: 26, text: "万象汇豆库 加班 贡湖湾湿地公园", tags: ["walk"] },
+      { n: 27, text: "灵岩山 灵白线徒步 木渎古镇裕兴记", tags: ["trip", "food"] },
+      { n: 28, text: "爬惠山 昊来了寿司", tags: ["trip", "food"] },
+      { n: 29, text: "长广溪湿地公园 喜在山舍", tags: ["walk", "food"] },
+      { n: 30, text: "渔父岛 梅里古镇海底捞", tags: ["trip", "food"] },
+      { n: 31, text: "苏州满打食堂日料 金水湾栈桥 苏州中心广场点都德", tags: ["food", "walk"] },
+      { n: 32, text: "八佰伴疯狂动物城2", tags: ["trip"] },
+      { n: 33, text: "状元古道 大丁佳苑顾氏羊肉汤 沈阳鸡架 蠡湖中央公园欧洲城", tags: ["trip", "food"] },
+      { n: 34, text: "恋爱99天纪念 宝界山林公园散步 恒隆广场对面色響火锅", tags: ["special", "walk", "food"], tag: "恋爱 99 天" },
+      { n: 35, text: "无锡东站接站 塔斯汀凤梨汉堡", tags: ["food"] },
+      { n: 36, text: "惠山森林公园爬山", tags: ["trip"] },
+      { n: 37, text: "齐齐哈儿烤肉 世贸广场 慧聚寺 猪杂粥", tags: ["food", "trip"] },
+      { n: 38, text: "宽马记火锅 苏州博物馆 印象城食其家", tags: ["food", "trip"] },
+      { n: 39, text: "万象城寿司郎 搬家太湖佳园 运河汇喜顺广式大排档", tags: ["food"] },
+      { n: 40, text: "八方汇稻香酒家 试驾ES8 优衣库", tags: ["food", "trip"] },
+      { n: 41, text: "小歇茶餐厅丸子煲盐焗鸡 太湖边散步 茂业大牛湾牛腩饭", tags: ["food", "walk"] },
+      { n: 42, text: "韦记顺德大排档鱼生 虎丘湿地公园散步 苏州大悦城争鲜回转寿司", tags: ["food", "walk"] },
+      { n: 43, text: "海岸城厚德门铜锅涮肉 苏州万象天地入口开物面包店", tags: ["food"] },
+      { n: 44, text: "万象汇喜米粥底火锅 爸爸糖吐司 落霞睦邻中心奥乐齐超市", tags: ["food"] },
+      { n: 45, text: "湖宴楼松鼠桂鱼苏式面 冲山岛灯塔 悠方盒马超市饭团", tags: ["food", "trip"] },
+      { n: 46, text: "情人节前夜送花YSL礼盒 老乡鸡", tags: ["special", "food"], tag: "情人节前夜" },
+      { n: 47, text: "情人节爬三茅峰 苏宁一绪寿喜烧", tags: ["special", "trip", "food"], tag: "情人节" },
+      { n: 48, text: "大年初一万象汇野人先生", tags: ["special", "food"], tag: "大年初一" },
+      { n: 49, text: "万象城看镖人和飞驰人生 东广德沙茶牛肉火锅 和合淳酸辣汤小馄饨生煎", tags: ["trip", "food"] },
+      { n: 50, text: "晶季豉油鸡炒饭 体育公园跑步 黄记隆江猪脚饭 迪卡侬买运动内衣", tags: ["food"] },
+      { n: 51, text: "岐余食堂汉堡肉咖喱饭 荟聚迪卡侬买运动鞋运动帽 爬惠山 红船厂水饺面条", tags: ["food", "trip"] },
+      { n: 52, text: "崇安寺吃牛杂小丸子 散步", tags: ["food", "walk"] },
+      { n: 53, text: "嗱喃中山脆肉皖火锅 方文泉烤肉 宜家荟聚 重返白桦林校园餐厅", tags: ["food"] },
+      { n: 54, text: "江南大悦城火锅鸡 三叶眼镜城配无框眼镜 锡东八佰伴不饱岛面包节麻薯和加州辣妹汉堡", tags: ["food"] },
+      { n: 55, text: "市民广场散步 牛五件火锅烧烤", tags: ["walk", "food"] },
+      { n: 56, text: "香巴拉云南菜 恒隆逛neo 尚贤湖巡塘 八方汇朝鲜烧烤", tags: ["food", "walk"] },
+      { n: 57, text: "常州环球港泰味里", tags: ["trip", "food"] },
+      { n: 58, text: "陈烤烤牛肉火锅 银河配方咖啡 白桦林", tags: ["food"] },
+      { n: 59, text: "万象城向北 小溪港鱼咀公园散步 万象汇星洲小馆新加坡菜", tags: ["walk", "food"] },
+      { n: 60, text: "早饭鸿运大包 苏州乐园一日游", tags: ["trip", "food"] },
+      { n: 61, text: "万象汇卿庭火锅 马山十里明珠 望湖亭 湖滨商业街脸盆龙虾 酱大骨龙虾", tags: ["food", "trip"] },
+      { n: 62, text: "虎丘湿地公园萌宠乐园散步 民记港式茶餐厅（大东方店）烧鸭腿肠粉", tags: ["walk", "food"] },
+      { n: 63, text: "恒隆广场工夫潮汕菜 吼山森林公园 抹茶节 圆融购物中心萍姐火锅", tags: ["food", "trip"] },
+      { n: 64, text: "无锡酒家山楂排骨 方圆荟阿嫲的情书", tags: ["food"] },
+      { n: 65, text: "520彩虹花束 惠山 山姆 山葵炙", tags: ["special", "trip", "food"], tag: "520" },
+      { n: 66, text: "宝界山 万象城芸山季 交响音乐厅", tags: ["trip"] },
+      { n: 67, text: "万象城本素酸菜鱼 小米手机 豪客来", tags: ["food"] },
+      { n: 68, text: "苏州万象天地别屋 烤椰泰奶", tags: ["food"] },
+      { n: 69, text: "南京公司 牛人码头火锅 南航 出租屋", tags: ["trip", "food"] },
+      { n: 70, text: "万象城金泰兰冬阴功火锅 天佑城健身", tags: ["food"] },
+      { n: 71, text: "南京带回来法大吉面包", tags: ["food"] },
+      { n: 72, text: "万象城炭围 万象城西区 尚贤湖散步", tags: ["food", "walk"] },
+      { n: 73, text: "万象汇东来鸭干锅掌翅 电影四渡 盒马试吃 蠡湖大桥公园散步", tags: ["food", "walk", "trip"] },
+      { n: 74, text: "海岸城炉活纯鲜打边炉 尧哥里 董坞里 万象城西区tunamaki寿司", tags: ["food"] },
+      { n: 75, text: "7.18文文生日万象城布歌东京 上青闽南火锅 电影功夫女足 八仙", tags: ["special", "food", "trip"], tag: "文文生日" },
+      { n: 76, text: "奥体中心游泳馆", tags: ["trip"] },
+      { n: 77, text: "肥仔潮汕牛肉火锅 恒隆 混果汁 贡湖湾", tags: ["food", "walk"] },
+      { n: 78, text: "万象城西区阳坊涮肉 蜘蛛侠崭新之日 体育中心游泳馆", tags: ["food", "trip"] },
+      { n: 79, text: "游泳 华庄商业广场潮牛烤肉", tags: ["food"] },
+      { n: 80, text: "七夕送花 扬之阿李菌汤火锅 捌佰里农家大院咸蛋黄四季豆 酒酿馒头红烧肉", tags: ["special", "food"], tag: "七夕" },
+      { n: 81, text: "万象城湖北小馆黑鸭煲", tags: ["food"] },
+      { n: 82, text: "晚上下班后药膳光头鸡", tags: ["food"] },
+      { n: 83, text: "芦庄古香楼 大东方百货买上门礼品 八佰伴大渔铁板烧 太湖之星游览园", tags: ["food", "trip"] },
+      { n: 84, text: "8.30文文上门 逛海岸城", tags: ["special", "trip"], tag: "文文上门" },
+      { n: 85, text: "9.5陈霖上门 茂业同庆楼 秦园小笼 贡湖湾水韵广场散步", tags: ["special", "food", "walk"], tag: "陈霖上门" },
+      { n: 86, text: "小站公园 西瓜 油泼面", tags: ["walk", "food"] },
+      { n: 87, text: "陈霖生日 万象城西区东盛自助料理 荟聚太平鸟买衣服", tags: ["special", "food"], tag: "陈霖生日" },
+      { n: 88, text: "9.13恋爱一周年 奥体中心游泳", tags: ["special", "trip"], tag: "恋爱一周年" },
+      { n: 89, text: "甘牧源西北牛羊肉火锅 荟聚太平鸟优衣库情侣装 宜家家居 毛华美食酸辣汤", tags: ["food"] },
+      { n: 90, text: "接送文文上下班 来家里吃饭", tags: ["food"] },
+      { n: 91, text: "10.1父母见面 周新里徽州新院", tags: ["special", "food"], tag: "父母见面" },
+      { n: 92, text: "国庆蚌埠四日游", tags: ["special", "trip"], tag: "国庆出游" },
+    ];
+
+    function daysBetween(a, b) {
+      const ms = 24 * 60 * 60 * 1000;
+      const start = new Date(a.getFullYear(), a.getMonth(), a.getDate());
+      const end = new Date(b.getFullYear(), b.getMonth(), b.getDate());
+      return Math.floor((end - start) / ms) + 1;
+    }
+
+    function createPetals() {
+      const box = document.getElementById("petals");
+      for (let i = 0; i < 18; i++) {
+        const p = document.createElement("span");
+        p.className = "petal";
+        p.style.left = Math.random() * 100 + "%";
+        p.style.animationDuration = 8 + Math.random() * 10 + "s";
+        p.style.animationDelay = Math.random() * 8 + "s";
+        p.style.transform = `scale(${0.6 + Math.random() * 0.9})`;
+        box.appendChild(p);
+      }
+    }
+
+    function renderDiary() {
+      const root = document.getElementById("diary");
+      root.innerHTML = diaries
+        .map(
+          (d) => `
+        <article class="entry${d.tags.includes("special") ? " special" : ""}"
+                 data-tags="${d.tags.join(" ")}"
+                 data-text="${d.text}"
+                 data-reveal>
+          <div class="entry-day">
+            Day ${String(d.n).padStart(2, "0")}
+            ${d.tag ? `<span class="entry-tag">${d.tag}</span>` : ""}
+          </div>
+          <p class="entry-text">${d.text}</p>
+        </article>`
+        )
+        .join("");
+    }
+
+    function updateStats() {
+      document.getElementById("daysTogether").textContent = daysBetween(START_DATE, new Date());
+      document.getElementById("dateCount").textContent = diaries.length;
+      document.getElementById("milestoneCount").textContent = diaries.filter((d) =>
+        d.tags.includes("special")
+      ).length;
+    }
+
+    function observeReveal() {
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+      );
+      document.querySelectorAll("[data-reveal]").forEach((el) => io.observe(el));
+    }
+
+    let currentFilter = "all";
+    let currentQuery = "";
+
+    function applyFilter() {
+      const entries = document.querySelectorAll(".entry");
+      let visible = 0;
+      entries.forEach((el) => {
+        const tags = el.dataset.tags || "";
+        const text = el.dataset.text || "";
+        const matchFilter = currentFilter === "all" || tags.includes(currentFilter);
+        const matchQuery = !currentQuery || text.toLowerCase().includes(currentQuery);
+        const show = matchFilter && matchQuery;
+        el.classList.toggle("hidden", !show);
+        if (show) {
+          visible += 1;
+          el.classList.add("in");
+        }
+      });
+      document.getElementById("empty").style.display = visible ? "none" : "block";
+    }
+
+    document.getElementById("filters").addEventListener("click", (e) => {
+      const btn = e.target.closest(".chip");
+      if (!btn) return;
+      document.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
+      btn.classList.add("active");
+      currentFilter = btn.dataset.filter;
+      applyFilter();
+    });
+
+    document.getElementById("search").addEventListener("input", (e) => {
+      currentQuery = e.target.value.trim().toLowerCase();
+      applyFilter();
+    });
+
+    createPetals();
+    renderDiary();
+    updateStats();
+    observeReveal();
+  </script>
+</body>
+</html>
